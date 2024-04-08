@@ -5,6 +5,8 @@ from sklearn.experimental import enable_iterative_imputer
 from sklearn.impute import SimpleImputer, IterativeImputer
 from sklearn.linear_model import LinearRegression
 from scipy.interpolate import interp1d
+from sklearn.impute import KNNImputer
+from xgbimputer import XGBImputer
 
 class MissingValueImputer(TransformerMixin, BaseEstimator):
     def __init__(self, imputation_method='mean', group_cols=None, time_col=None, time_method='linear', prediction_model=None, threshold=0.5):
@@ -47,6 +49,10 @@ class MissingValueImputer(TransformerMixin, BaseEstimator):
             return IterativeImputer(max_iter=10, random_state=42)
         elif self.imputation_method == 'prediction':
             return self._prediction_imputer(X)
+        elif self.imputation_method == 'knn':
+            return self._knn_imputer(X)
+        elif self.imputation_method == 'xgboost':
+            return self._xgboost_imputer(X)
         else:
             raise ValueError(f"Invalid imputation method: {self.imputation_method}")
 
@@ -89,6 +95,18 @@ class MissingValueImputer(TransformerMixin, BaseEstimator):
             return SimpleImputer(missing_values=np.nan, strategy=linear_impute)
         else:
             return X[self.time_col].apply(linear_impute)
+
+    def _knn_imputer(self, X):
+        if any(X.select_dtypes(include=['category', 'object'])):
+            raise ValueError("KNN imputation is not supported for categorical columns.")
+    
+        knn_imputer = KNNImputer()
+        return knn_imputer.fit_transform(X)
+
+
+    def _xgboost_imputer(self, X):
+        xgb_imputer = XGBImputer(with_cv=True)
+        return xgb_imputer.fit_transform(X)
 
     def _prediction_imputer(self, X):
         if self.prediction_model is None:
