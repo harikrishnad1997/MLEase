@@ -28,17 +28,13 @@ imputed_df = imputer.fit_transform(df)
 
 # Example usage of OutlierRemoverScaler
 scaler = OutlierRemoverScaler()
-transformed_data = scaler.fit_transform(your_data_here)
+transformed_data = scaler.fit_transform(data)
+
+#Example of Bucketizer
+bucketizer = Bucketizer(num_classes=3, use_qcut=True, automatic_num_classes=True)
+transformed_data = bucketizer.fit_transform(data)
 ```
-
-## Contributing
-
-Contributions are welcome! Please read the [contribution guidelines](CONTRIBUTING.md) before getting started.
 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Acknowledgements
-
-- List any contributors or libraries you used or were inspired by.
