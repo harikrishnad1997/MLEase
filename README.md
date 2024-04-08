@@ -1,20 +1,20 @@
-# MachLearnEase
+# Machine Learning Ease
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-MachLearnEase is a Python package designed to simplify machine learning tasks by providing easy-to-use tools and utilities.
+MachLearnEase is a Python package that simplifies machine learning tasks by providing easy-to-use tools and utilities.
 
 ## Installation
 
-You can install MachLearnEase using pip:
+You can install MLEase using pip:
 
 ```bash
-pip install MachLearnEase
+pip install MLEase
 ```
 
 ## Usage
 
-MachLearnEase provides a variety of tools to streamline your machine learning workflow. Here's an example of how to use the `MissingValueImputer` and `OutlierRemoverScaler` classes:
+MLEase provides a variety of tools to streamline your machine learning workflow. Here's an example of how to use the `MissingValueImputer` and `OutlierRemoverScaler` classes:
 
 ```python
 from mlease import MissingValueImputer, OutlierRemoverScaler
