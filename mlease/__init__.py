@@ -1,3 +1,3 @@
-from .outlier_remover_scaler import OutlierRemoverScaler
+from .outlier_remover import OutlierRemoverScaler
 
 __all__ = ['OutlierRemoverScaler']

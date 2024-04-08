@@ -8,10 +8,10 @@ from sklearn.svm import OneClassSVM
 from sklearn.covariance import EllipticEnvelope
 from sklearn.neighbors import LocalOutlierFactor
 
-class OutlierRemoverScaler(TransformerMixin, BaseEstimator):
+class OutlierRemover(TransformerMixin, BaseEstimator):
     def __init__(self, scaler =  PowerTransformer(), sigma=True, sigma_factor=3, iqr=False,iqr_factor=0.25, mahalanobis=False, anomaly_detection=None, threshold=0.05):
         """
-        Initialize the OutlierRemoverScaler object.
+        Initialize the OutlierRemover object.
 
         Parameters:
         scaler (sklearn.preprocessing.Scaler): The scaler to use for feature scaling. Defaults to PowerTransformer().
@@ -23,6 +23,13 @@ class OutlierRemoverScaler(TransformerMixin, BaseEstimator):
         anomaly_detection (str): The name of the anomaly detection algorithm to use ('isolation_forest', 'oneclass_svm', 'elliptic_envelope', 'local_outlier_factor').
         threshold (float): The contamination threshold for the anomaly detection algorithm.
         """
+        if not 0 <= threshold <= 1:
+            raise ValueError("Threshold must be between 0 and 1")
+        
+        if not 0<=iqr_factor<=1:
+            raise ValueError("IQR Factor must be between 0 and 1")
+        if not sigma_factor>0:
+            raise ValueError("Sigma Factor must be greater than 0")
         self.sigma = sigma
         self.sigma_factor = sigma_factor
         self.iqr = iqr
@@ -36,14 +43,14 @@ class OutlierRemoverScaler(TransformerMixin, BaseEstimator):
 
     def fit(self, X, y=None):
         """
-        Fit the OutlierRemoverScaler to the input data.
+        Fit the OutlierRemover to the input data.
 
         Parameters:
         X (pandas.DataFrame): The input data.
         y (None): Not used, included for compatibility with scikit-learn.
 
         Returns:
-        self (OutlierRemoverScaler): The fitted OutlierRemoverScaler object.
+        self (OutlierRemover): The fitted OutlierRemover object.
         """
         self.continuous_columns = X.select_dtypes(include=[np.number]).columns
         self.cov_matrix = X[self.continuous_columns].cov()
@@ -114,7 +121,7 @@ class OutlierRemoverScaler(TransformerMixin, BaseEstimator):
 
     def fit_transform(self, X, y=None):
         """
-        Fit the OutlierRemoverScaler to the input data and transform it.
+        Fit the OutlierRemover to the input data and transform it.
 
         Parameters:
         X (pandas.DataFrame): The input data.
