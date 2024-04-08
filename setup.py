@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 VERSION = '0.0.1'
 DESCRIPTION = 'Simplify machine learning tasks with easy-to-use tools and utilities.'
 LONG_DESCRIPTION = """
-MachLearnEase is a comprehensive Python package designed to simplify machine learning tasks by providing a wide range of easy-to-use tools and utilities. It aims to streamline the entire machine learning workflow, from data preprocessing to model evaluation, making it accessible to both beginners and experienced practitioners.
+MLEase is a comprehensive Python package that simplifies machine learning tasks by providing many easy-to-use tools and utilities. It aims to streamline the entire machine learning workflow, from data preprocessing to model evaluation, making it accessible to both beginners and experienced practitioners.
 
 Key features include:
 
@@ -12,20 +12,20 @@ Key features include:
 - Feature scaling: Scale your features to a standard range using methods like Min-Max scaling or standardization.
 - and more.
 
-MachLearnEase aims to simplify the machine learning process and empower users to build more robust and accurate models with ease.
+MLEase aims to simplify the machine learning process and empower users to build more robust and accurate models with ease.
 """
 
 
 # Setting up
 setup(
-    name="MachLearnEase",
+    name="MLEase",
     version=VERSION,
     author="Harikrishna Dev",
     author_email="harikrish0607@gmail.com",
     description=DESCRIPTION,
     long_description=LONG_DESCRIPTION,
     long_description_content_type='text/markdown',
-    url='https://github.com/harikrishnad1997/MachLearnEase',
+    url='https://github.com/harikrishnad1997/MLEase',
     packages=find_packages(),
     install_requires=[],  # add any additional packages that
     # needs to be installed along with your package. Eg: 'numpy'
