@@ -21,7 +21,7 @@ from mlease import MissingValueImputer, OutlierRemoverScaler
 import pandas as pd
 
 # Example usage of MissingValueImputer
-imputer = MissingValueImputer(strategy='mean')
+imputer = MissingValueImputer(imputation_method='mean')
 data = {'A': [1, 2, None, 4], 'B': [5, None, 7, 8]}
 df = pd.DataFrame(data)
 imputed_df = imputer.fit_transform(df)
