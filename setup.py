@@ -27,8 +27,18 @@ setup(
     long_description_content_type='text/markdown',
     url='https://github.com/harikrishnad1997/MLEase',
     packages=find_packages(),
-    install_requires=[],  # add any additional packages that
-    # needs to be installed along with your package. Eg: 'numpy'
+    install_requires=[
+    'scikit-learn==1.4.1.post1',
+    'pandas==2.2.1',
+    'numpy==1.26.4',
+    'joblib==1.3.2',
+    'python-dateutil==2.9.0.post0',
+    'pytz==2024.1',
+    'six==1.16.0',
+    'threadpoolctl==3.4.0',
+    'xgbimputer==0.2.0',
+    'xgboost==2.0.3',
+    ],
 
     keywords=['python', 'machine learning', 'data science'],
     classifiers=[
