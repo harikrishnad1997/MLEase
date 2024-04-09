@@ -9,7 +9,7 @@ MachLearnEase is a Python package that simplifies machine learning tasks by prov
 You can install MLEase using pip:
 
 ```bash
-pip install MLEase==0.0.1
+pip install MLEase
 ```
 
 ## Usage
