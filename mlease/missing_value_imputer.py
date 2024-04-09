@@ -26,7 +26,7 @@ class MissingValueImputer(TransformerMixin, BaseEstimator):
     def transform(self, X):
         X_copy = X.copy()
         X_copy = self._impute_missing_values(X_copy)
-        return X_copy
+        return pd.DataFrame(X_copy, columns=X.columns, index=X.index)
 
     def fit_transform(self, X, y=None):
         self.fit(X)
