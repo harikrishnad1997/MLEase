@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-VERSION = '0.0.1'
+VERSION = '0.0.2'
 DESCRIPTION = 'Simplify machine learning tasks with easy-to-use tools and utilities.'
 LONG_DESCRIPTION = """
 MLEase is a comprehensive Python package that simplifies machine learning tasks by providing many easy-to-use tools and utilities. It aims to streamline the entire machine learning workflow, from data preprocessing to model evaluation, making it accessible to both beginners and experienced practitioners.
@@ -28,16 +28,16 @@ setup(
     url='https://github.com/harikrishnad1997/MLEase',
     packages=find_packages(),
     install_requires=[
-    'scikit-learn==1.4.1.post1',
-    'pandas==2.2.1',
-    'numpy==1.26.4',
-    'joblib==1.3.2',
-    'python-dateutil==2.9.0.post0',
-    'pytz==2024.1',
-    'six==1.16.0',
-    'threadpoolctl==3.4.0',
-    'xgbimputer==0.2.0',
-    'xgboost==2.0.3',
+    'scikit-learn',
+    'pandas',
+    'numpy',
+    'joblib',
+    'python-dateutil',
+    'pytz',
+    'six',
+    'threadpoolctl',
+    'xgbimputer',
+    'xgboost',
     ],
 
     keywords=['python', 'machine learning', 'data science'],
