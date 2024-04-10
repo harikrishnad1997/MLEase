@@ -12,6 +12,14 @@ You can install MLEase using pip:
 pip install MLEase
 ```
 
+You can install from source using the following commands
+
+```bash
+git clone https://github.com/harikrishnad1997/MLEase.git && cd MLEase
+pip install .
+```
+
+
 ## Usage
 
 MLEase provides a variety of tools to streamline your machine learning workflow. Here's an example of how to use the `MissingValueImputer` and `OutlierRemoverScaler` classes:
