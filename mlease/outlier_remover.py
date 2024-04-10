@@ -102,7 +102,7 @@ class OutlierRemover(TransformerMixin, BaseEstimator):
             X = X[outlier_model.predict(X[self.continuous_columns]) == 1]
 
         # Fit the standard scaler to the cleaned data
-        self.scaler.fit(X[self.continuous_columns])
+        # self.scaler.fit(X[self.continuous_columns])
         return self
 
     def transform(self, X):
@@ -115,8 +115,10 @@ class OutlierRemover(TransformerMixin, BaseEstimator):
         Returns:
         X_copy (pandas.DataFrame): The transformed data with outliers removed and continuous features scaled.
         """
+        
         X_copy = X.copy()
-        X_copy[self.continuous_columns] = self.scaler.transform(X_copy[self.continuous_columns])
+        if self.anomaly_detection in ['oneclass_svm', 'elliptic_envelope']:
+            X_copy[self.continuous_columns] = self.scaler.transform(X_copy[self.continuous_columns])
         return X_copy
 
     def fit_transform(self, X, y=None):

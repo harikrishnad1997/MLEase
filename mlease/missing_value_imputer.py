@@ -19,6 +19,8 @@ class MissingValueImputer(TransformerMixin, BaseEstimator):
         self.imputer = None
 
     def fit(self, X, y=None):
+        if not isinstance(X, pd.DataFrame):
+            X = pd.DataFrame(X)
         self.imputer = self._get_imputer(X)
         self.imputer.fit(X)
         return self
@@ -40,7 +42,9 @@ class MissingValueImputer(TransformerMixin, BaseEstimator):
         elif self.imputation_method == 'most_frequent':
             return SimpleImputer(strategy='most_frequent')
         elif self.imputation_method == 'group_wise':
-            return SimpleImputer(strategy='mean', missing_values=np.nan)
+            if self.group_cols is None:
+                raise ValueError("group_cols must be specified for group-wise imputation.")
+            return self._group_wise_imputer(X)
         elif self.imputation_method == 'time_series_spline':
             return self._time_series_spline_imputer(X)
         elif self.imputation_method == 'time_series_linear':
@@ -62,6 +66,12 @@ class MissingValueImputer(TransformerMixin, BaseEstimator):
         else:
             return self.imputer.transform(X)
 
+    def _group_wise_imputer(self, X):
+        imputer = SimpleImputer(strategy='mean')
+        for col in self.group_cols:
+            X[col] = X.groupby(col)['Value'].transform(lambda x: imputer.fit_transform(x.values.reshape(-1, 1)).flatten())
+        return imputer
+    
     def _time_series_spline_imputer(self, X):
         if self.time_col is None:
             raise ValueError("Time column must be specified for time series imputation.")

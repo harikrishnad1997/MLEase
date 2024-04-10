@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-VERSION = '0.0.2'
+VERSION = '0.0.3'
 DESCRIPTION = 'Simplify machine learning tasks with easy-to-use tools and utilities.'
 LONG_DESCRIPTION = """
 MLEase is a comprehensive Python package that simplifies machine learning tasks by providing many easy-to-use tools and utilities. It aims to streamline the entire machine learning workflow, from data preprocessing to model evaluation, making it accessible to both beginners and experienced practitioners.
@@ -47,7 +47,6 @@ setup(
         "Intended Audience :: Education",
         "Intended Audience :: Science/Research",
         "License :: OSI Approved :: MIT License",
-        "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Operating System :: OS Independent",
     ]
